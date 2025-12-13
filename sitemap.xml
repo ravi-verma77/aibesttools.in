@@ -4,9 +4,6 @@
     <loc>https://aibesttools.in/</loc>
   </url>
   <url>
-    <loc>https://aibesttools.in/index.html</loc>
-  </url>
-  <url>
     <loc>https://aibesttools.in/tools.html</loc>
   </url>
   <url>
@@ -30,7 +27,19 @@
   <url>
     <loc>https://aibesttools.in/dmca.html</loc>
   </url>
+
+  <!-- Blog posts -->
   <url>
     <loc>https://aibesttools.in/blog/top-10-ai-tools.html</loc>
   </url>
+  <url>
+    <loc>https://aibesttools.in/blog/chatgpt-guide-2025.html</loc>
+  </url>
+  <url>
+    <loc>https://aibesttools.in/blog/chatgpt-guide-2025-en.html</loc>
+  </url>
+  <url>
+    <loc>https://aibesttools.in/blog/gemini-nano-banana.html</loc>
+  </url>
+
 </urlset>
