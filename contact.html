@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+    <meta name="formspree-id" content="PUT_YOUR_FORMSPREE_ID" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - AI Best Tools</title>
+  <meta name="description" content="Contact AI Best Tools for submissions, partnerships and support. Send us a message or find our email address." />
+  <meta name="keywords" content="contact, ai tools support, partnerships, submit tool" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">AI <span>Best Tools</span></div>
+    <nav>
+    <title>Contact - AI Best Tools</title>
+    <meta name="description" content="We'd love to hear from you — whether it's a tool submission, partnership idea or feedback." />
+    <meta name="keywords" content="contact, ai tools support, partnerships, submit tool" />
+    <meta property="og:title" content="Contact - AI Best Tools" />
+    <meta property="og:description" content="Send us a message for tool submissions, partnership requests, or support." />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container">
+      <h1>Contact Us</h1>
+      <p>We'd love to hear from you — whether it's a tool submission, partnership idea or feedback.</p>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <form id="contactForm" class="form-row" novalidate>
+            <div>
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" required placeholder="Your name" />
+            </div>
+
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required placeholder="you@example.com" />
+            </div>
+
+            <div>
+              <label for="subject">Subject</label>
+              <input id="subject" name="subject" type="text" placeholder="Tool submission / Partnership / Support" />
+            </div>
+
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required placeholder="Tell us more..." ></textarea>
+            </div>
+
+            <div class="contact-actions">
+              <button class="btn" id="sendBtn" type="submit">Send Message</button>
+              <button type="button" class="btn" id="mailtoBtn" style="background:transparent;color:var(--primary);border:1px solid rgba(99,102,241,0.12)">Open Email App</button>
+            </div>
+          </form>
+        </div>
+
+        <aside class="contact-info">
+          <div class="info-block">
+            <h4>Get in touch</h4>
+            <p>Email: <a href="mailto:info@aibesttools.in">info@aibesttools.in</a></p>
+            <p>Response time: Usually within 48 hours</p>
+          </div>
+
+          <div class="info-block">
+            <h4>Follow us</h4>
+            <div class="socials">
+              <a href="#" aria-label="Twitter">T</a>
+              <a href="#" aria-label="LinkedIn">in</a>
+              <a href="#" aria-label="Github">GH</a>
+            </div>
+          </div>
+
+          <div class="info-block">
+            <h4>Office</h4>
+            <p>Remote</p>
+            <div class="map-placeholder">Map placeholder (add iframe here)</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms</a> | <a href="about.html">About</a></p>
+    <p>© AI Best Tools</p>
+  </footer>
+
+  <div id="successModal" class="modal" role="dialog" aria-hidden="true">
+    <div class="modal-card">
+      <h3>Message sent</h3>
+      <p>Thanks! Your message was received. We'll get back to you soon.</p>
+      <div style="margin-top:12px"><button class="btn" id="closeModal">Close</button></div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const form = document.getElementById('contactForm');
+      const modal = document.getElementById('successModal');
+      const close = document.getElementById('closeModal');
+      const mailtoBtn = document.getElementById('mailtoBtn');
+
+      // Read Formspree ID from meta tag if set
+      const fsMeta = document.querySelector('meta[name="formspree-id"]');
+      const FORMSPREE_ID = fsMeta ? fsMeta.content.trim() : '';
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
+        if(!name || !email || !message){
+          alert('Please fill name, email and message.');
+          return;
+        }
+
+        // If user added a Formspree ID in the head meta, submit via fetch
+        if(FORMSPREE_ID && FORMSPREE_ID !== 'PUT_YOUR_FORMSPREE_ID'){
+          const url = 'https://formspree.io/f/' + FORMSPREE_ID;
+          fetch(url, {method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
+            .then(r=>r.json())
+            .then(()=>{
+              modal.classList.add('show');
+              modal.setAttribute('aria-hidden','false');
+              form.reset();
+            }).catch(()=>{
+              alert('Submission failed — please try mailto option.');
+            });
+          return;
+        }
+
+        // Fallback: show success modal and reset (user can use mailto button if they prefer)
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden','false');
+        form.reset();
+      });
+
+      close.addEventListener('click', function(){
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden','true');
+      });
+
+      mailtoBtn.addEventListener('click', function(){
+        const subj = encodeURIComponent(document.getElementById('subject').value || 'Contact from website');
+        const body = encodeURIComponent('Name: '+document.getElementById('name').value+'\n\n'+document.getElementById('message').value+'\n\n--\nAI Best Tools');
+        window.location.href = 'mailto:info@aibesttools.in?subject='+subj+'&body='+body;
+      });
+    })();
+  </script>
+</body>
+</html>
