@@ -13,6 +13,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="style.css" />
+  <script src="/assets/search.js" defer></script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebSite","name":"AI Best Tools","url":"https://aibesttools.in/","description":"Find the best AI tools for writing, images, video and productivity."}
   </script>
@@ -32,8 +33,9 @@
     <h2>Discover Top AI Tools!</h2>
     <p>Browse curated AI tools for writing, images, video, and productivity.</p>
     <div class="search-row">
-      <input type="text" placeholder="Search AI tools by category, use case or name..." />
-      <button>Search</button>
+      <input id="site-search" type="text" placeholder="Search AI tools by category, use case or name..." autocomplete="off" />
+      <button id="site-search-btn">Search</button>
+      <div id="search-suggestions" class="search-suggestions" aria-hidden="true"></div>
     </div>
   </section>
 
