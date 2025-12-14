@@ -223,6 +223,9 @@ header .logo svg{width:44px;height:44px;flex-shrink:0;display:block}
 /* small adjustments for article text inside white post-card */
 .post-card p{color:#5885c5}
 
+/* Disable hover transform for blog cards so background images don't shift */
+.card.blog:hover{transform:none;box-shadow:0 10px 30px rgba(2,6,23,0.06)}
+
 .card.tool{display:flex;flex-direction:column;gap:14px;align-items:stretch;background:var(--card-grad)}
 .tool-img{width:76px;height:76px;border-radius:12px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-bottom:8px}
 .tool-img svg{width:44px;height:44px}
